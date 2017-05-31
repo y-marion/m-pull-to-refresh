@@ -279,14 +279,20 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <span class="hljs-keyword">import</span> <span class="hljs-string">'antd/lib/icon/style/css'</span>;
 
 <span class="hljs-keyword">let</span> count = <span class="hljs-number">1</span>;
-<span class="hljs-keyword">const</span> App = React.createClass({
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+
+  constructor(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.state = {
       items: [
         <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{`item-${count}`}</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">height:</span> <span class="hljs-attribute">50</span> }}&gt;</span>Item {count++}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>,
-      ],
+      ]
     };
-  },
+
+    this.loadingFunction = this.loadingFunction.bind(this);
+    this.addItem = this.addItem.bind(this);
+  }
+
   loadingFunction() {
     return new Promise((resolve, reject) =&gt; {
       setTimeout(() =&gt; {
@@ -297,14 +303,16 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
         }
       }, 500);
     });
-  },
+  }
+
   addItem() {
     this.state.items.push(<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{`item-${count}`}</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">height:</span> <span class="hljs-attribute">100</span> }}&gt;</span>Item {count++}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>)</span>;
     <span class="hljs-keyword">this</span>.setState({
       items: <span class="hljs-keyword">this</span>.state.items,
     });
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-  },
+  }
+
   render() {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
@@ -353,8 +361,8 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
         &lt;/<span class="hljs-tag">PullToRefresh</span>&gt;
       &lt;/<span class="hljs-tag">div</span>&gt;
     )</span></span>;
-  },
-});
+  }
+}
 
 ReactDOM.render(<span class="xml"><span class="css">&lt;<span class="hljs-tag">App</span> /&gt;, <span class="hljs-tag">document</span><span class="hljs-class">.getElementById</span>('__<span class="hljs-tag">react-content</span>'));
 </span></span></code></pre></div>
